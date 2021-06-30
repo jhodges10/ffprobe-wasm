@@ -11,3 +11,6 @@ dist/ffprobe-wasm.js:
 	-lworkerfs.js \
 	-o dist/ffprobe-wasm.js \
 	src/ffprobe-wasm-wrapper.cpp
+
+serve:
+	cd www && yarn serve

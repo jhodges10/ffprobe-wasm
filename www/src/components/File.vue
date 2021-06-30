@@ -11,7 +11,7 @@
               <b-form-file
                   v-if="protocol === 'file'"
                   id="file"
-                  accept=".mp4, .mkv"
+                  accept=".mp4, .mkv, .wav, .aac"
                   v-model="file"
                   :state="Boolean(file)"
                   placeholder="Choose a file or drop it here..."
@@ -99,11 +99,14 @@ export default {
   },
   methods: {
     onFile(event) {
+      console.log(event);
       this.tabIndex = 0;
       this.$worker.onmessage = (e) => {
         this.data = e.data;
       }
       const file = event.dataTransfer ? event.dataTransfer.files[0] : event.target.files[0];
+      console.log("File downloaded");
+      console.log(file);
       this.$worker.postMessage([ 'get_file_info', file ]);
     },
     onDownload() {
